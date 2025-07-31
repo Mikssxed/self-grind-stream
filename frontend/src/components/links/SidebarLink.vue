@@ -28,6 +28,6 @@ const activeClass = computed(() => {
     @click="() => toggleSidebar(false)"
   >
     <img width="24" height="24" :src="iconSrc" :alt="`${title}-icon`" />
-    {{ title }}
+    <span class="md:hidden xl:inline">{{ title }}</span>
   </RouterLink>
 </template>

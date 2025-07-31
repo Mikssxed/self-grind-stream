@@ -9,7 +9,7 @@ const { toggleSidebar } = globalStore();
 
 <template>
   <div
-    class="md:topbar-width r-0 fixed top-0 z-10 flex h-[101px] w-full items-center justify-between border-b border-b-border bg-background p-6 md:left-sidebar"
+    class="md:topbar-width r-0 fixed top-0 z-10 flex h-[101px] w-full items-center justify-between border-b border-b-border bg-background p-6 md:left-sidebar-mobile xl:left-sidebar"
   >
     <LogoLink v-class="'md:hidden mb-0'" />
     <UserShortInfo v-class="'hidden md:flex'" />

@@ -23,6 +23,7 @@ body {
   --color-text-primary: #ffffff;
 
   --spacing-sidebar: 256px;
+  --spacing-sidebar-mobile: 105px;
   --spacing-topbar: 101px;
 }
 

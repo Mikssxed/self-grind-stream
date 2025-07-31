@@ -25,7 +25,7 @@ const { toggleSidebar } = store;
   />
   <div
     :class="[
-      'fixed top-0 right-0 z-20 flex h-dvh w-64 flex-col border-l border-border bg-background p-4 transition-transform md:right-auto md:left-0 md:border-r md:border-l-0',
+      'fixed top-0 right-0 z-20 flex h-dvh w-64 md:w-auto xl:w-64 flex-col border-l border-border bg-background p-4 transition-transform md:right-auto md:left-0 md:border-r md:border-l-0',
       sidebarOpen ? 'translate-x-0' : 'translate-x-full',
       'md:translate-x-0',
     ]"
