@@ -13,13 +13,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Weekdays {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum HabitRepetition {
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
 model Habit {
   id        String   @id @default(cuid())
   title     String
   description String?
   startDate DateTime
   duration Int?
-  repeat String
+  repeat HabitRepetition
+  weekdays Weekdays[]
   streakCount Int @default(0)
   totalCount Int @default(0)
   createdAt DateTime @default(now())

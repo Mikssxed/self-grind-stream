@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import { useGetHabitsQuery } from "@/queries";
 import CurrentWeek from "./habits/CurrentWeek.vue";
 import HabitGrid from "./habits/HabitGrid.vue";
+
+const { data: habits } = useGetHabitsQuery();
+console.log(habits);
 </script>
 
 <template>

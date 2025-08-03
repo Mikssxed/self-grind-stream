@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
+    "@tanstack/vue-query": "^5.83.1",
+    "@tanstack/vue-query-devtools": "^5.84.0",
+    "axios": "^1.11.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "lucide-vue-next": "^0.534.0",
