@@ -1,6 +1,11 @@
-import type { Habit } from "@/types";
+import type { Habit, HabitWeekday } from "@/types";
 import { get } from ".";
 
-export async function getHabits() {
-  return await get<Habit[]>("/habits");
+export async function getHabits(selectedDay: HabitWeekday) {
+  return await get<Habit[]>("/habits", {
+    params: {
+      selectedDay,
+      currentDate: new Date().toISOString(),
+    },
+  });
 }

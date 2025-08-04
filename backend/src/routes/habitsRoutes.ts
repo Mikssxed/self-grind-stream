@@ -14,4 +14,6 @@ router.get("/", async (req, res) => {
   res.status(200).json(habits);
 });
 
+router.post("/", async (req, res) => {});
+
 export default router;

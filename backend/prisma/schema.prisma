@@ -37,7 +37,7 @@ model Habit {
   startDate DateTime
   duration Int?
   repeat HabitRepetition
-  weekdays Weekdays[]
+  weekdays Weekdays[] @default([])
   streakCount Int @default(0)
   totalCount Int @default(0)
   createdAt DateTime @default(now())

@@ -4,6 +4,8 @@ import { cn } from "@/utils";
 import { computed } from "vue";
 import Completion from "./Completion.vue";
 
+const emits = defineEmits(["click"]);
+
 const { day } = defineProps<{ day: Date }>();
 const habits = habitsStore();
 const dayName = day.toLocaleDateString("en-US", { weekday: "short" });
@@ -19,6 +21,7 @@ const dayCompletion = computed(() => {
 
 function selectDay() {
   habits.setSelectedDay(day);
+  emits("click");
 }
 </script>
 

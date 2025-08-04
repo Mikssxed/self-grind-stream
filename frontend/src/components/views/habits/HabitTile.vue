@@ -3,19 +3,10 @@ import { habitsStore } from "@/stores";
 import type { Habit } from "@/types";
 import { isSameDay } from "date-fns";
 import { Flame, Zap } from "lucide-vue-next";
-import { computed } from "vue";
 import Completion from "./Completion.vue";
 
 const { habit } = defineProps<{ habit: Habit }>();
 const habitStore = habitsStore();
-
-const isCompleted = computed(() => {
-  return habit.completedAt?.some((date) => {
-    const habitDate = new Date(date);
-    const selectedDay = new Date(habitStore.selectedDay);
-    return habitDate.toDateString() === selectedDay.toDateString();
-  });
-});
 
 function toggleCompletion() {
   const selectedDay = new Date(habitStore.selectedDay);
@@ -63,7 +54,7 @@ function toggleCompletion() {
       </div>
     </div>
     <Completion
-      :completion="isCompleted ? 1 : 0"
+      :completion="habit.isCompleted ? 1 : 0"
       static
       :click="toggleCompletion"
     />
