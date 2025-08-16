@@ -23,7 +23,11 @@ const hasHabits = computed(() => {
   <div class="w-full flex">
     <div class="flex flex-col gap-5 p-5 w-full lg:w-2/3">
       <CurrentWeek @dayChange="handleDayChange" />
-      <HabitGrid v-if="hasHabits" :habits="habits!.data" />
+      <HabitGrid
+        v-if="hasHabits"
+        :habits="habits!.data"
+        :selectedDay="selectedDay"
+      />
     </div>
     <!-- Habit info -->
     <div class="h-screen lg:w-1/3 hidden lg:flex border-l border-border"></div>

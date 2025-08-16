@@ -1,33 +1,21 @@
 <script setup lang="ts">
-import { habitsStore } from "@/stores";
-import type { Habit } from "@/types";
-import { isSameDay } from "date-fns";
+import { useToggleHabit } from "@/queries";
+import type { Habit, HabitWeekday } from "@/types";
 import { Flame, Zap } from "lucide-vue-next";
+import { toRef } from "vue";
 import Completion from "./Completion.vue";
 
-const { habit } = defineProps<{ habit: Habit }>();
-const habitStore = habitsStore();
+const { habit, selectedDay } = defineProps<{
+  habit: Habit;
+  selectedDay: HabitWeekday;
+}>();
+
+const selectedDayRef = toRef(() => selectedDay);
+
+const toggleHabit = useToggleHabit(habit.id, selectedDayRef, habit.isCompleted);
 
 function toggleCompletion() {
-  const selectedDay = new Date(habitStore.selectedDay);
-
-  const habitIndex = habitStore.habits.findIndex(
-    (h) => h.title === habit.title
-  );
-
-  const alreadyCompleted = habit.completedAt?.some((date) => {
-    const habitDate = new Date(date);
-    return habitDate.toDateString() === selectedDay.toDateString();
-  });
-
-  const newCompletedAt = alreadyCompleted
-    ? habit.completedAt?.filter((date) => {
-        const currentDate = new Date(date);
-        return !isSameDay(currentDate, selectedDay);
-      })
-    : [...(habit.completedAt || []), selectedDay];
-
-  habitStore.updateHabit(habitIndex, { ...habit, completedAt: newCompletedAt });
+  toggleHabit.mutate();
 }
 </script>
 

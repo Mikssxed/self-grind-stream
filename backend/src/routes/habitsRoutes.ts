@@ -11,9 +11,38 @@ router.get("/", async (req, res) => {
     return;
   }
 
-  res.status(200).json(habits);
+  const habitsWithCompletions = await Promise.all(
+    habits.map(async (habit) => {
+      const isCompleted = await prisma.habitCompletion.findFirst({
+        where: {
+          habitId: habit.id,
+        },
+      });
+
+      return {
+        ...habit,
+        isCompleted: !!isCompleted,
+      };
+    })
+  );
+
+  res.status(200).json(habitsWithCompletions);
 });
 
-router.post("/", async (req, res) => {});
+router.post("/complete/:id", async (req, res) => {
+  const { id } = req.params;
+  const { completedAt } = req.body;
+
+  const habitCompletion = await prisma.habitCompletion.create({
+    data: {
+      habitId: id,
+      completedAt: new Date(completedAt),
+    },
+  });
+
+  res.status(201).json(habitCompletion);
+});
+
+router.delete("/uncomplete/:id", async (req, res) => {});
 
 export default router;
