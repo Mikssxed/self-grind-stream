@@ -1,11 +1,14 @@
 import type { Habit, HabitWeekday } from "@/types";
 import { deleteReq, get, post } from ".";
 
-export async function getHabits(selectedDay: HabitWeekday) {
+export async function getHabits(
+  selectedDay: HabitWeekday,
+  selectedDate: Date = new Date()
+) {
   return await get<Habit[]>("/habits", {
     params: {
       selectedDay,
-      currentDate: new Date().toISOString(),
+      selectedDate: selectedDate.toISOString(),
     },
   });
 }

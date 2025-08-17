@@ -6,12 +6,17 @@ import CurrentWeek from "./habits/CurrentWeek.vue";
 import HabitGrid from "./habits/HabitGrid.vue";
 
 const selectedDay = ref(mapDateToWeekDay());
+const selectedDate = ref(new Date());
 
-const { data: habits, isSuccess } = useGetHabitsQuery(selectedDay);
+const { data: habits, isSuccess } = useGetHabitsQuery(
+  selectedDay,
+  selectedDate
+);
 
 const handleDayChange = (day: Date) => {
   const mappedDay = mapDateToWeekDay(day);
   selectedDay.value = mappedDay;
+  selectedDate.value = day;
 };
 
 const hasHabits = computed(() => {
